@@ -1,0 +1,37 @@
+﻿@model List<FIRMA_MVC.Models.KATEGORI>
+@{
+    ViewBag.Title = "Index";
+    string veri = ViewData["veri"].ToString();
+}
+
+<div id="arama">
+    <form action="/Admin/Kategoriler/Search" method="post">
+        <label>Ara</label>
+        <input type="text" name="txtAra" placeholder="Kategori Adı Giriniz" value="@veri"/>
+        <input type="submit" value="Ara" class="button"/>
+        <div class="button">
+            <a href="/Admin/Kategoriler/Create">Yeni</a>
+        </div>
+    </form>
+</div>
+
+<div id="liste">
+    <table>
+        <tr>
+            <th>Sil</th>
+            <th>Kategori Refno</th>
+            <th>Kategori Adı</th>
+        </tr>
+
+        @{ 
+            foreach (var kategori in Model)
+            {
+                <tr>
+                    <th><a href="/Admin/Kategoriler/Delete/@kategori.KATEGORI_REFNO">Sil</a></th>
+                    <th>@kategori.KATEGORI_REFNO</th>
+                    <th><a href="/Admin/Kategoriler/Form/@kategori.KATEGORI_REFNO">@kategori.KATEGORI_ADI</a></th>
+                </tr>
+            }
+        }
+    </table>
+</div>

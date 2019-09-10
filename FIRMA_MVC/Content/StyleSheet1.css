@@ -1,0 +1,85 @@
+﻿body {
+
+    background-color:#e5e5e5;
+    font-size:14px;
+    font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+
+}
+
+
+
+#liste table{
+    background-color:#cbeded;
+    width:100%;
+}
+#liste table tr {
+    height: 25px;
+    line-height: 25px;
+}
+
+#liste table tr:nth-child(:even) {
+    background-color:azure;
+}
+#liste table tr:nth-child(:odd) {
+    background-color:#ebf6ce;
+}
+#liste table tr:first-child {
+    background-color: #bbdbf2;
+}  
+
+#liste table tr:hover:not(:first-child){
+    background-color:#aadbfe;
+    cursor:pointer;
+}
+a{
+    text-decoration:none;
+    color:#ff0505;
+}
+
+#arama {
+    height:30px;
+    line-height:30px;
+    background-color:#d7d7d7;
+    margin-bottom:5px;
+}
+
+#menu {
+    height: 30px;
+    line-height: 30px;
+    background-color: #d7d7d7;
+}
+
+.button {
+    display: inline-block;
+    outline: none;
+    cursor: pointer;
+    border: solid 1px #da7c0c;
+    background: #478dad;
+    text-align: center;
+    text-decoration: none;
+    font: 14px/100% Arial, Helvetica, sans-serif;
+    padding: .5em 2em .55em;
+    text-shadow: 0 1px 1px rgba(0,0,0,.3);
+    -webkit-border-radius: .5em;
+    -moz-border-radius: .5em;
+    border-radius: .3em;
+    -webkit-box-shadow: 0 1px 2px rgba(0,0,0,.2);
+    -moz-box-shadow: 0 1px 2px rgba(0,0,0,.2);
+    box-shadow: 0 1px 2px rgba(0,0,0,.2);
+}
+    .button:hover {
+        background: #f47c20;
+        background: -webkit-gradient(linear, left top, left bottom, from(#f88e11), to(#f06015));
+        background: -moz-linear-gradient(top, #f88e11, #f06015);
+        filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#f88e11', endColorstr='#f06015');
+    }
+
+#banner {
+    text-align:center;
+    font-size:30px;
+    font-weight:bold;
+    background-color:#108fe9;
+    color:white;
+    height:50px;
+    line-height:50px;
+}
