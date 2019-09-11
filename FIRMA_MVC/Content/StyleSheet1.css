@@ -88,3 +88,9 @@ a{
     height:50px;
     width:50px;
 }
+
+#hatalar {
+    background-color:white;
+    color:red;
+    border:1px solid red;
+}

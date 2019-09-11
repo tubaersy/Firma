@@ -36,7 +36,7 @@ namespace FIRMA_MVC.Areas.Admin.Controllers
             return RedirectToAction("Index");
         }
 
-        [HttpGet]
+       
         public ActionResult Create(int? id)
         {
             URUN urun = new URUN();
@@ -49,16 +49,85 @@ namespace FIRMA_MVC.Areas.Admin.Controllers
                 }
             }
 
-            ViewData["kategori"] = db.KATEGORIs.ToList();
+            ViewData["kategori"] = db.KATEGORIs.ToList();       // her şey object olarak saklanır
             ViewBag.marka = db.MARKAs.ToList();
 
             return View(urun);  // model binding yapılıyor
 
         }
         [HttpPost]
-        public ActionResult Create(URUN urun)
+        public ActionResult Create(URUN urun, HttpPostedFileBase RESIM1, HttpPostedFileBase RESIM2, HttpPostedFileBase RESIM3, HttpPostedFileBase RESIM4)
         {
-            return View();
+
+            if (ModelState.IsValid)
+            {
+                if (RESIM1 != null)
+                {
+                    urun.RESIM1 = RESIM1.FileName;
+                }
+                if (RESIM2 != null)
+                {
+                    urun.RESIM2 = RESIM2.FileName;
+                }
+                if (RESIM3 != null)
+                {
+                    urun.RESIM3 = RESIM3.FileName;
+                }
+                if (RESIM4 != null)
+                {
+                    urun.RESIM4 = RESIM4.FileName;
+                }
+
+                if (urun.URUN_REFNO == 0)
+                {
+                    db.URUNs.Add(urun);
+                }
+                else
+                {
+                    db.Entry(urun).State = System.Data.Entity.EntityState.Modified;
+                }
+
+                db.SaveChanges();
+                // dosyaları yükle
+
+                if (RESIM1 != null)
+                {
+                    RESIM1.SaveAs(Request.PhysicalApplicationPath + "/images/" + RESIM1.FileName);      // resim kaydediliyor
+                }
+                if (RESIM2 != null)
+                {
+                    RESIM2.SaveAs(Request.PhysicalApplicationPath + "/images/" + RESIM2.FileName);
+                }
+                if (RESIM3 != null)
+                {
+                    RESIM3.SaveAs(Request.PhysicalApplicationPath + "/images/" + RESIM3.FileName);
+                }
+                if (RESIM4 != null)
+                {
+                    RESIM4.SaveAs(Request.PhysicalApplicationPath + "/images/" + RESIM4.FileName);
+                }
+            }
+
+            else
+            {
+                string hatalar = "";
+
+                foreach (var item in ModelState.Values)
+                {
+                    for (int i = 0; i < item.Errors.Count; i++)
+                    {
+                        hatalar += item.Errors[i].ErrorMessage + "<br>";
+                    }
+                }
+                ViewData["hatalar"] = hatalar;
+                ViewData["kategori"] = db.KATEGORIs.ToList();       // her şey object olarak saklanır
+                ViewBag.marka = db.MARKAs.ToList();
+
+                return View(urun);
+            }
+
+            
+            return RedirectToAction("Index");
         }
         public ActionResult Search(string ara)
         {

@@ -1,9 +1,30 @@
-﻿
+﻿@using FIRMA_MVC.Models;
+@model URUN
+
 @{
     ViewBag.Title = "Create";
+    // controllerden gelen verileri kendi tiplerine dönüştürüyoruz.
+    List<KATEGORI> kategori = ViewData["kategori"] as List<KATEGORI>;
+    List<MARKA> marka = ViewBag.marka as List<MARKA>;
+
+    // Bu şekilde kullanmamaya özen göstriyoruz.
+    //FIRMAMODEL db = new FIRMAMODEL();
+    //var k = db.KATEGORIs.ToList();
+
+    string hatalar = "";
+    if (ViewData["hatalar"] != null)
+    {
+        hatalar = ViewData["hatalar"].ToString();
+    }
+
 }
 
-    <form action="/Admin/Urunler/Create" method="post">
+<div id="hatalar" style="@((hatalar).Length>0? "" : "display:none")">
+
+    @hatalar
+</div>
+
+    <form action="/Admin/Urunler/Create" method="post" enctype="multipart/form-data">
         <table>
 
             <tr>
@@ -13,70 +34,127 @@
 
             <tr>
                 <td>Ürün Refno</td>
-                <td><input type="text" name="URUN_REFNO" id="URUN_REFNO" /></td>
+                <td><input type="text" readonly name="URUN_REFNO" id="URUN_REFNO" value="@Model.URUN_REFNO"/></td>
             </tr>
 
             <tr>
                 <td>Ürün Adı</td>
-                <td><input type="text" name="URUN_ADI" id="URUN_ADI" /></td>
+                <td><input type="text" name="URUN_ADI" id="URUN_ADI" value="@Model.URUN_ADI" /></td>
             </tr>
 
             <tr>
                 <td>Fiyatı</td>
-                <td><input type="text" name="FIYATI" id="FIYATI" /></td>
+                <td><input type="text" name="FIYATI" id="FIYATI" value="@Model.FIYATI" /></td>
             </tr>
 
             <tr>
                 <td>Durumu</td>
-                <td><input type="text" name="DURUMU" id="DURUMU" /></td>
+                <td>
+                    <select name="DURUMU" id="DURUMU">
+                        @if (Model.DURUMU == true)
+                        {
+                            <option selected value="true">Aktif</option>
+                            <option value="false">Pasif</option>
+                        }
+                        else
+                        {
+                            <option value="true">Aktif</option>
+                            <option selected value="false">Pasif</option>
+                        }
+                    </select>
+                </td>
             </tr>
 
             <tr>
                 <td>Kategori</td>
                 <td>
-                    <select name="KATEGORİ_REFNO" id="KATEGORİ_REFNO">
-                        <option value=""></option>
+                    <select name="KATEGORI_REFNO" id="KATEGORI_REFNO">
+                        @foreach (var k in kategori)
+                        {
+                            if (Model.KATEGORI_REFNO == k.KATEGORI_REFNO)
+                            {
+                                <option selected value="@k.KATEGORI_REFNO">@k.KATEGORI_ADI</option>
+                            }
+                            else
+                            {
+                                <option value="@k.KATEGORI_REFNO">@k.KATEGORI_ADI</option>
+                            }
+
+                        }
+
                     </select>
                 </td>
             </tr>
 
             <tr>
                 <td>Kdv Oranı</td>
-                <td><input type="text" name="KDV_ORANI" id="KDV_ORANI" /></td>
+                <td><input type="text" name="KDV_ORANI" id="KDV_ORANI" value="@Model.KDV_ORANI" /></td>
             </tr>
 
             <tr>
                 <td>Marka</td>
                 <td>
                     <select name="MARKA_REFNO" id="MARKA_REFNO">
-                        <option value=""></option>
+                        @foreach (var m in marka)
+                        {
+                            if (Model.MARKA_REFNO == m.MARKA_REFNO)
+                            {
+                                <option selected value="@m.MARKA_REFNO">@m.MARKA_ADI</option>
+                            }
+                            else
+                            {
+                                <option value="@m.MARKA_REFNO">@m.MARKA_ADI</option>
+                            }
+
+                         }
+
                     </select>
                 </td>
             </tr>
 
             <tr>
                 <td>Açıklama</td>
-                <td><input type="text" name="ACIKLAMA" id="ACIKLAMA" /></td>
+                <td><textarea name="ACIKLAMA" id="ACIKLAMA">@Model.ACIKLAMA</textarea></td>
             </tr>
 
             <tr>
                 <td>Resim1</td>
-                <td><input type="file" name="RESIM1" id="RESIM1" /></td>
+                <td>
+                    <input type="file" name="RESIM1" id="RESIM1" value="@Model.RESIM1" />
+                    <img class="urunresim" src="~/images/@Model.RESIM1" />
+                </td>
             </tr>
 
             <tr>
                 <td>Resim2</td>
-                <td><input type="file" name="RESIM2" id="RESIM2" /></td>
+                <td>
+                    <input type="file" name="RESIM2" id="RESIM2" value="@Model.RESIM2" />
+                    <img class="urunresim" src="~/images/@Model.RESIM2" />
+                </td>
             </tr>
 
             <tr>
                 <td>Resim3</td>
-                <td><input type="file" name="RESIM3" id="RESIM3" /></td>
+                <td>
+                <input type="file" name="RESIM3" id="RESIM3" value="@Model.RESIM3" />
+                <img class="urunresim" src="~/images/@Model.RESIM3" />
+                </td>
             </tr>
 
             <tr>
                 <td>Resim4</td>
-                <td><input type="file" name="RESIM4" id="RESIM4" /></td>
+                <td>
+                    <input type="file" name="RESIM4" id="RESIM4" value="@Model.RESIM4" />
+                    <img class="urunresim" src="~/images/@Model.RESIM4" />
+                </td>
+            </tr>
+
+            <tr>
+                <td></td>
+                <td>
+                    <input type="submit" class="button" value="Kaydet" />
+                    <a href="/Admin/Urunler/Index" class="button">Vazgeç</a>
+                </td>
             </tr>
         </table>
     </form>

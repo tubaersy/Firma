@@ -30,10 +30,10 @@
             @foreach (var urun in Model)
             {
                 <tr>
-                    <th><a href="/Admin/Urunler/Delete/@urun.KATEGORI_REFNO">Sil</a></th>
+                    <th><a href="/Admin/Urunler/Delete/@urun.URUN_REFNO">Sil</a></th>
                     <th>@urun.URUN_REFNO</th>
                     <th>
-                        <a href="/Admin/Urunler/Create/@urun.KATEGORI_REFNO">
+                        <a href="/Admin/Urunler/Create/@urun.URUN_REFNO">
                             @urun.URUN_ADI
                         </a>
                     </th>
@@ -42,6 +42,7 @@
                     <th>@urun.KATEGORI.KATEGORI_ADI</th>
                     <th>@urun.MARKA.MARKA_ADI</th>
                     <th><img id="img@(@urun.URUN_REFNO)" class="urunresim" src="~/images/@urun.RESIM1" /></th>
+
 
                 </tr>
             }

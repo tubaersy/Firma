@@ -14,7 +14,25 @@ namespace FIRMA_MVC.Areas.Admin.Controllers
         // GET: Admin/Markalar
         public ActionResult Index()
         {
+            List<MARKA> liste = db.MARKAs.ToList();
             return View();
         }
+
+        public ActionResult Delete(int? id)
+        {
+
+            if (id != null)
+            {
+                MARKA m = db.MARKAs.Find(id);
+                if (m != null)
+                {
+                    db.MARKAs.Remove(m);
+                    db.SaveChanges();
+                }
+            }
+
+            return RedirectToAction("Index");
+        }
+
     }
 }

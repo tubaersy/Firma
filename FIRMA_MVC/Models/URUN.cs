@@ -12,25 +12,33 @@ namespace FIRMA_MVC.Models
         [Key]
         public int URUN_REFNO { get; set; }
 
-        [Required]
-        [StringLength(50)]
+        [Required(ErrorMessage ="Ürün adýný giriniz !")]
+        [StringLength(50, ErrorMessage ="Ürün adý 3 ile 5 karakter arasýnda olmalý",
+                          ErrorMessageResourceName ="",
+                          ErrorMessageResourceType = null,
+                          MinimumLength = 3)]
         public string URUN_ADI { get; set; }
 
         [Column(TypeName = "numeric")]
+        [Required(ErrorMessage = "Fiyatý giriniz !")]
         public decimal FIYATI { get; set; }
 
+        [Required(ErrorMessage = "Ürün durumunu belirtiniz")]
         public bool DURUMU { get; set; }
 
+        [Required(ErrorMessage = "Bir kategori seçiniz")]
         public int KATEGORI_REFNO { get; set; }
 
+        [Required(ErrorMessage = "KDV oraný giriniz")]
         public int KDV_ORANI { get; set; }
 
+        [Required(ErrorMessage = "Bir marka seçiniz")]
         public int MARKA_REFNO { get; set; }
 
         [StringLength(4000)]
         public string ACIKLAMA { get; set; }
 
-        [Required]
+        [Required(ErrorMessage = "Bir resim seçiniz")]
         [StringLength(50)]
         public string RESIM1 { get; set; }
 
