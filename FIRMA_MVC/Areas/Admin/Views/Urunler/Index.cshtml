@@ -1,0 +1,53 @@
+﻿@model List<FIRMA_MVC.Models.URUN>
+@{
+    ViewBag.Title = "Index";
+}
+
+<div id="arama">
+    <form action="/Admin/Urunler/Search" method="post">
+        <label for="txtAra">Urun Adı</label>
+        <input id="txtAra" name="txtAra" type="text" placeholder="Ürün Adı Giriniz"/>
+        <input type="submit" class="button" value="Ara"/>
+        <a class="button" href="/Admin/Urunler/Create">Yeni</a>
+    </form>
+
+</div>
+
+<div>
+
+    <div id="liste">
+        <table>
+            <tr>
+                <th>Sil</th>
+                <th>Ürün Refno</th>
+                <th>Ürün Adı</th>
+                <th>Fiyatı</th>
+                <th>Durumu</th>
+                <th>Kategori</th>
+                <th>Marka</th>
+                <th>Resim</th>
+            </tr>
+            @foreach (var urun in Model)
+            {
+                <tr>
+                    <th><a href="/Admin/Urunler/Delete/@urun.KATEGORI_REFNO">Sil</a></th>
+                    <th>@urun.URUN_REFNO</th>
+                    <th>
+                        <a href="/Admin/Urunler/Create/@urun.KATEGORI_REFNO">
+                            @urun.URUN_ADI
+                        </a>
+                    </th>
+                    <th>@urun.FIYATI</th>
+                    <th>@urun.DURUMU</th>
+                    <th>@urun.KATEGORI.KATEGORI_ADI</th>
+                    <th>@urun.MARKA.MARKA_ADI</th>
+                    <th><img id="img@(@urun.URUN_REFNO)" class="urunresim" src="~/images/@urun.RESIM1" /></th>
+
+                </tr>
+            }
+
+        </table>
+    </div>
+
+</div>
+
