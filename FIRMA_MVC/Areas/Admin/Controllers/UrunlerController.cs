@@ -12,10 +12,31 @@ namespace FIRMA_MVC.Areas.Admin.Controllers
     {
         FIRMAMODEL db = new FIRMAMODEL();
         // GET: Admin/Urunler
-        public ActionResult Index()
+        //public ActionResult Index()
+        //{
+        //    List<URUN> liste = db.URUNs.ToList();
+        //    return View(liste);
+        //}
+        public ActionResult Index(string arama)
         {
-            List<URUN> liste = db.URUNs.ToList();
+           
+
+            List<URUN> liste = new List<URUN>();
+
+            if (arama == null)
+            {
+                arama = "";
+                liste = db.URUNs.ToList();
+            }
+            else
+            {
+                liste = db.URUNs.Where(k => k.URUN_ADI.Contains(arama)).ToList();
+            }
+
+            ViewData["veri"] = arama;
+
             return View(liste);
+            
         }
         public ActionResult Delete(int? id)
         {
@@ -129,9 +150,10 @@ namespace FIRMA_MVC.Areas.Admin.Controllers
             
             return RedirectToAction("Index");
         }
-        public ActionResult Search(string ara)
+        public ActionResult Search(string txtAra)
         {
-            return View();
+            
+            return RedirectToAction("Index", "Urunler", new { arama = txtAra });
         }
     }
 }

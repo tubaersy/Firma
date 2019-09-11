@@ -1,7 +1,39 @@
-﻿
+﻿@model List<FIRMA_MVC.Models.MARKA>
 @{
     ViewBag.Title = "Index";
+    string veri = ViewData["veri"].ToString();
 }
 
-<h2>Index</h2>
 
+<div id="arama">
+    <form action="/Admin/Markalar/Search" method="post">
+        <label>Ara</label>
+        <input type="text" name="txtAra" placeholder="Marka Adı Giriniz" value="@veri" />
+        <input type="submit" value="Ara" class="button" />
+        <div class="button">
+            <a href="/Admin/Markalar/Create">Yeni</a>
+        </div>
+    </form>
+</div>
+
+
+<div id="liste">
+    <table>
+        <tr>
+            <th>Sil</th>
+            <th>Marka Refno</th>
+            <th>Marka Adı</th>
+        </tr>
+
+        @{
+            foreach (var marka in Model)
+            {
+                <tr>
+                    <th><a href="/Admin/Markalar/Delete/@marka.MARKA_REFNO">Sil</a></th>
+                    <th>@marka.MARKA_REFNO</th>
+                    <th><a href="/Admin/MARKALAR/Create/@marka.MARKA_REFNO">@marka.MARKA_ADI</a></th>
+                </tr>
+            }
+        }
+    </table>
+</div>

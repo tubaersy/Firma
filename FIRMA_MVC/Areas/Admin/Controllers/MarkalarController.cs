@@ -12,27 +12,74 @@ namespace FIRMA_MVC.Areas.Admin.Controllers
     {
         FIRMAMODEL db = new FIRMAMODEL();
         // GET: Admin/Markalar
-        public ActionResult Index()
+        public ActionResult Index(string arama)
         {
             List<MARKA> liste = db.MARKAs.ToList();
-            return View();
+            
+
+            if (arama == null)
+            {
+                arama = "";
+                liste = db.MARKAs.ToList();
+            }
+            else
+            {
+                liste = db.MARKAs.Where(k => k.MARKA_ADI.Contains(arama)).ToList();
+            }
+
+            ViewData["veri"] = arama;
+
+            return View(liste);
+            
         }
 
-        public ActionResult Delete(int? id)
+        public ActionResult Delete(int id)
         {
+            MARKA m = db.MARKAs.Find(id);
 
-            if (id != null)
+            if (m != null)
             {
-                MARKA m = db.MARKAs.Find(id);
-                if (m != null)
-                {
-                    db.MARKAs.Remove(m);
-                    db.SaveChanges();
-                }
+                 db.MARKAs.Remove(m);
+                 db.SaveChanges();
             }
 
             return RedirectToAction("Index");
         }
 
+        [HttpGet]   // link üzerinden geliyor
+        public ActionResult Create(int? id)     // int? id null olabilir demek
+        {
+            if (id == null)
+            {
+                MARKA m = new MARKA();
+                return View(m);
+            }
+            else
+            {
+                MARKA m = db.MARKAs.Find(id);
+                return View(m);
+            }
+        }
+
+        [HttpPost]
+        public ActionResult Create(MARKA m)
+        {
+            if (m.MARKA_REFNO == 0)
+            {
+                db.MARKAs.Add(m);
+            }
+            else
+            {
+                db.Entry(m).State = System.Data.Entity.EntityState.Modified;
+            }
+            db.SaveChanges();
+            return RedirectToAction("Index");
+        }
+
+        public ActionResult Search(string txtAra)
+        {
+            
+            return RedirectToAction("Index", "Markalar", new { arama = txtAra });
+        }
     }
 }
