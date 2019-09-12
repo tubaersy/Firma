@@ -14,7 +14,7 @@ namespace FIRMA_MVC.Areas.Admin.Controllers
         public ActionResult Index(string arama)
         {
             List<MARKA> liste = new List<MARKA>();
-
+            
 
             if (arama == null)
             {

@@ -14,7 +14,7 @@ namespace FIRMA_MVC.Areas.Admin.Controllers
         public ActionResult Index(string arama)
         {
             // var liste = db.KATEGORIs.ToList();
-
+            
             List<KATEGORI> liste = new List<KATEGORI>();
 
             if (arama == null)
