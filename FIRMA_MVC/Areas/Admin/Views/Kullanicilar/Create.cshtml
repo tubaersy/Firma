@@ -1,0 +1,43 @@
+﻿@model FIRMA_MVC.Models.KULLANICI
+@{
+    ViewBag.Title = "Create";
+}
+
+@* aşağıdaki using yukarıdaki gibi değil formu oluşturduktan sonra yok ediyor *@
+@using (Html.BeginForm())
+{
+
+    <div class="form-horizontal">
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        <div class="form-group">
+            @Html.LabelFor(model => model.KULLANICI_REFNO, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.KULLANICI_REFNO, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.KULLANICI_REFNO, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.KULLANICI_ADI, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.KULLANICI_ADI, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.KULLANICI_ADI, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.PAROLA, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.PAROLA, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.PAROLA, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <input type="submit" value="Kaydet" class="btn btn-default" />
+            @Html.ActionLink("Vazgeç", "Index", null, new { @class = "btn btn-default" })
+        </div>
+
+    </div>
+
+}

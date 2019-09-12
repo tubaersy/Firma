@@ -24,137 +24,157 @@
     @hatalar
 </div>
 
-    <form action="/Admin/Urunler/Create" method="post" enctype="multipart/form-data">
-        <table>
+<form action="/Admin/Urunler/Create" method="post" enctype="multipart/form-data">
 
-            <tr>
-                <td></td>
-                <td>KAYIT FORMU</td>
-            </tr>
+    <div class="form-horizontal">
 
-            <tr>
-                <td>Ürün Refno</td>
-                <td><input type="text" readonly name="URUN_REFNO" id="URUN_REFNO" value="@Model.URUN_REFNO"/></td>
-            </tr>
+        <div class="form-group">
+            <label for="URUN_REFNO" class="control-label col-md-2">Ürün Refno</label>
 
-            <tr>
-                <td>Ürün Adı</td>
-                <td><input type="text" name="URUN_ADI" id="URUN_ADI" value="@Model.URUN_ADI" /></td>
-            </tr>
+            <div class="col-md-10">
+                <input type="text" readonly name="URUN_REFNO" id="URUN_REFNO" value="@Model.URUN_REFNO" class="form-control" />
+            </div>
+        </div>
 
-            <tr>
-                <td>Fiyatı</td>
-                <td><input type="text" name="FIYATI" id="FIYATI" value="@Model.FIYATI" /></td>
-            </tr>
+        <div class="form-group">
+            <label for="URUN_ADI" class="control-label col-md-2">Ürün Adı</label>
 
-            <tr>
-                <td>Durumu</td>
-                <td>
-                    <select name="DURUMU" id="DURUMU">
-                        @if (Model.DURUMU == true)
+            <div class="col-md-10">
+                <input type="text" name="URUN_ADI" id="URUN_ADI" value="@Model.URUN_ADI" class="form-control" />
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label for="FIYATI" class="control-label col-md-2">Fiyatı</label>
+
+            <div class="col-md-10">
+                <input type="text" name="FIYATI" id="FIYATI" value="@Model.FIYATI" class="form-control" />
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label for="DURUMU" class="control-label col-md-2">Durumu</label>
+
+            <div class="col-md-10">
+                <select name="DURUMU" id="DURUMU" class="form-control">
+                    @if (Model.DURUMU == true)
+                    {
+                        <option selected value="true">Aktif</option>
+                        <option value="false">Pasif</option>
+                    }
+                    else
+                    {
+                        <option value="true">Aktif</option>
+                        <option selected value="false">Pasif</option>
+                    }
+                </select>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label for="KATEGORI_REFNO" class="control-label col-md-2">Kategori</label>
+
+            <div class="col-md-10">
+                <select name="KATEGORI_REFNO" id="KATEGORI_REFNO" class="form-control">
+                    @foreach (var k in kategori)
+                    {
+                        if (Model.KATEGORI_REFNO == k.KATEGORI_REFNO)
                         {
-                            <option selected value="true">Aktif</option>
-                            <option value="false">Pasif</option>
+                            <option selected value="@k.KATEGORI_REFNO">@k.KATEGORI_ADI</option>
                         }
                         else
                         {
-                            <option value="true">Aktif</option>
-                            <option selected value="false">Pasif</option>
-                        }
-                    </select>
-                </td>
-            </tr>
-
-            <tr>
-                <td>Kategori</td>
-                <td>
-                    <select name="KATEGORI_REFNO" id="KATEGORI_REFNO">
-                        @foreach (var k in kategori)
-                        {
-                            if (Model.KATEGORI_REFNO == k.KATEGORI_REFNO)
-                            {
-                                <option selected value="@k.KATEGORI_REFNO">@k.KATEGORI_ADI</option>
-                            }
-                            else
-                            {
-                                <option value="@k.KATEGORI_REFNO">@k.KATEGORI_ADI</option>
-                            }
-
+                            <option value="@k.KATEGORI_REFNO">@k.KATEGORI_ADI</option>
                         }
 
-                    </select>
-                </td>
-            </tr>
+                    }
 
-            <tr>
-                <td>Kdv Oranı</td>
-                <td><input type="text" name="KDV_ORANI" id="KDV_ORANI" value="@Model.KDV_ORANI" /></td>
-            </tr>
+                </select>
+            </div>
+        </div>
 
-            <tr>
-                <td>Marka</td>
-                <td>
-                    <select name="MARKA_REFNO" id="MARKA_REFNO">
-                        @foreach (var m in marka)
+        <div class="form-group">
+            <label for="KDV_ORANI" class="control-label col-md-2">Kdv Oranı</label>
+
+            <div class="col-md-10">
+                <input type="text" name="KDV_ORANI" id="KDV_ORANI" value="@Model.KDV_ORANI" class="form-control" />
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label for="MARKA_REFNO" class="control-label col-md-2">Marka</label>
+
+            <div class="col-md-10">
+                <select name="MARKA_REFNO" id="MARKA_REFNO" class="form-control">
+                    @foreach (var m in marka)
+                    {
+                        if (Model.MARKA_REFNO == m.MARKA_REFNO)
                         {
-                            if (Model.MARKA_REFNO == m.MARKA_REFNO)
-                            {
-                                <option selected value="@m.MARKA_REFNO">@m.MARKA_ADI</option>
-                            }
-                            else
-                            {
-                                <option value="@m.MARKA_REFNO">@m.MARKA_ADI</option>
-                            }
+                            <option selected value="@m.MARKA_REFNO">@m.MARKA_ADI</option>
+                        }
+                        else
+                        {
+                            <option value="@m.MARKA_REFNO">@m.MARKA_ADI</option>
+                        }
 
-                         }
+                    }
 
-                    </select>
-                </td>
-            </tr>
+                </select>
+            </div>
+        </div>
 
-            <tr>
-                <td>Açıklama</td>
-                <td><textarea name="ACIKLAMA" id="ACIKLAMA">@Model.ACIKLAMA</textarea></td>
-            </tr>
+        <div class="form-group">
+            <label for="ACIKLAMA" class="control-label col-md-2">Açıklama</label>
 
-            <tr>
-                <td>Resim1</td>
-                <td>
-                    <input type="file" name="RESIM1" id="RESIM1" value="@Model.RESIM1" />
-                    <img class="urunresim" src="~/images/@Model.RESIM1" />
-                </td>
-            </tr>
+            <div class="col-md-10">
+                <input type="text" name="ACIKLAMA" id="ACIKLAMA" value="@Model.ACIKLAMA" class="form-control" />
+            </div>
+        </div>
 
-            <tr>
-                <td>Resim2</td>
-                <td>
-                    <input type="file" name="RESIM2" id="RESIM2" value="@Model.RESIM2" />
-                    <img class="urunresim" src="~/images/@Model.RESIM2" />
-                </td>
-            </tr>
+        <div class="form-group">
+            <label for="RESIM1" class="control-label col-md-2">Resim1</label>
 
-            <tr>
-                <td>Resim3</td>
-                <td>
-                <input type="file" name="RESIM3" id="RESIM3" value="@Model.RESIM3" />
+            <div class="col-md-10">
+                <input type="file" name="RESIM1" id="RESIM1" value="@Model.RESIM1" class="form-control" />
+                <img class="urunresim" src="~/images/@Model.RESIM1" />
+            </div>
+
+        </div>
+
+        <div class="form-group">
+            <label for="RESIM2" class="control-label col-md-2">Resim2</label>
+
+            <div class="col-md-10">
+                <input type="file" name="RESIM2" id="RESIM2" value="@Model.RESIM2" class="form-control" />
+                <img class="urunresim" src="~/images/@Model.RESIM2" />
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label for="RESIM3" class="control-label col-md-2">Resim3</label>
+
+            <div class="col-md-10">
+                <input type="file" name="RESIM3" id="RESIM3" value="@Model.RESIM3" class="form-control" />
                 <img class="urunresim" src="~/images/@Model.RESIM3" />
-                </td>
-            </tr>
+            </div>
+        </div>
 
-            <tr>
-                <td>Resim4</td>
-                <td>
-                    <input type="file" name="RESIM4" id="RESIM4" value="@Model.RESIM4" />
-                    <img class="urunresim" src="~/images/@Model.RESIM4" />
-                </td>
-            </tr>
+        <div class="form-group">
+            <label for="RESIM4" class="control-label col-md-2">Resim4</label>
 
-            <tr>
-                <td></td>
-                <td>
-                    <input type="submit" class="button" value="Kaydet" />
-                    <a href="/Admin/Urunler/Index" class="button">Vazgeç</a>
-                </td>
-            </tr>
-        </table>
-    </form>
+            <div class="col-md-10">
+                <input type="file" name="RESIM4" id="RESIM4" value="@Model.RESIM4" class="form-control" />
+                <img class="urunresim" src="~/images/@Model.RESIM4" />
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Kaydet" class="btn btn-default" />
+                <a href="/Admin/Urunler/Index" class="btn btn-default" >Vazgeç</a>
+            </div>
+        </div>
+
+    </div>
+        
+</form>

@@ -1,0 +1,41 @@
+﻿@using FIRMA_MVC.Models;
+@model IEnumerable<KULLANICI>
+@{
+    ViewBag.Title = "Index";
+}
+
+<div id="arama">
+
+</div>
+
+
+<div id="liste">
+    <table>
+
+        <tr>
+            <td>Sil</td>
+            <td>@Html.DisplayNameFor(model => model.KULLANICI_REFNO)</td>
+            <td>@Html.DisplayNameFor(model => model.KULLANICI_ADI)</td>
+            <td>@Html.DisplayNameFor(model => model.PAROLA)</td>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                @*<a href="/Admin/Kullanicilar/Delete@item.KULLANICI_REFNO"></a>*@
+                <td>
+                    @Html.ActionLink("Sil", "Delete", new { id = item.KULLANICI_REFNO })
+                </td>
+                <td>
+                    @Html.DisplayFor(model => item.KULLANICI_REFNO)
+                </td>
+                <td>
+                    @Html.ActionLink(item.KULLANICI_ADI, "Create", new { id = item.KULLANICI_REFNO } )
+                                
+                 </td>
+                <td>@Html.DisplayFor(model => item.PAROLA)</td>
+            </tr>
+        }
+
+    </table>
+</div>
