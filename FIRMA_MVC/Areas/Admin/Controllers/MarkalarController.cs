@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
-using System.Web.Mvc;
 using FIRMA_MVC.Models;
 
 namespace FIRMA_MVC.Areas.Admin.Controllers
@@ -14,8 +13,8 @@ namespace FIRMA_MVC.Areas.Admin.Controllers
         // GET: Admin/Markalar
         public ActionResult Index(string arama)
         {
-            List<MARKA> liste = db.MARKAs.ToList();
-            
+            List<MARKA> liste = new List<MARKA>();
+
 
             if (arama == null)
             {
@@ -24,13 +23,13 @@ namespace FIRMA_MVC.Areas.Admin.Controllers
             }
             else
             {
-                liste = db.MARKAs.Where(k => k.MARKA_ADI.Contains(arama)).ToList();
+                liste = db.MARKAs.Where(m => m.MARKA_ADI.Contains(arama)).ToList();
             }
 
             ViewData["veri"] = arama;
 
             return View(liste);
-            
+
         }
 
         public ActionResult Delete(int id)
@@ -39,8 +38,8 @@ namespace FIRMA_MVC.Areas.Admin.Controllers
 
             if (m != null)
             {
-                 db.MARKAs.Remove(m);
-                 db.SaveChanges();
+                db.MARKAs.Remove(m);
+                db.SaveChanges();
             }
 
             return RedirectToAction("Index");
@@ -78,7 +77,7 @@ namespace FIRMA_MVC.Areas.Admin.Controllers
 
         public ActionResult Search(string txtAra)
         {
-            
+
             return RedirectToAction("Index", "Markalar", new { arama = txtAra });
         }
     }
