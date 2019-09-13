@@ -50,6 +50,7 @@ namespace FIRMA_MVC.Areas.Admin.Controllers
         {
             if (ModelState.IsValid)
             {
+                pROJE.ACIKLAMA = HttpUtility.HtmlDecode(pROJE.ACIKLAMA);
                 db.PROJEs.Add(pROJE);
                 db.SaveChanges();
                 return RedirectToAction("Index");

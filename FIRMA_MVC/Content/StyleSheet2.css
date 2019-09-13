@@ -1,0 +1,21 @@
+﻿body {
+
+
+}
+
+#banner {
+    background-color:#159dff;
+    height:50px;
+}
+
+#icerik {
+    background-color:#e8e8e8;
+}
+#menu {
+    background-color:#d7eeff;
+}
+
+#footer {
+    background-color: #acacac;
+    color: white;
+}

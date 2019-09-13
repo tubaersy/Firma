@@ -2,6 +2,7 @@
 
 @{
     ViewBag.Title = "Index";
+
 }
 
 <h2>Index</h2>
@@ -23,25 +24,32 @@
         <th></th>
     </tr>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.Display(item.PROJE_ADI)
-            @Html.DisplayFor(modelItem => item.PROJE_ADI)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.RESIM)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.ACIKLAMA)
-        </td>
-        <td>
-            <a href="/Admin/Projeler/Edit/"@item.PROJE_REFNO></a>
-            @Html.ActionLink("Edit", "Edit", new { id=item.PROJE_REFNO }) |
-            @Html.ActionLink("Details", "Details", new { id=item.PROJE_REFNO }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.PROJE_REFNO })
-        </td>
-    </tr>
-}
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.Display(item.PROJE_ADI)
+                @Html.DisplayFor(modelItem => item.PROJE_ADI)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.RESIM)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ACIKLAMA)
+            </td>
+            <td>
+                <a href="/Admin/Projeler/Edit/" @item.PROJE_REFNO></a>
+                @Html.ActionLink("Edit", "Edit", new { id = item.PROJE_REFNO }) |
+                @Html.ActionLink("Details", "Details", new { id = item.PROJE_REFNO }) |
+                @Html.ActionLink("Delete", "Delete", new { id = item.PROJE_REFNO })
+            </td>
+        </tr>
+    }
+    @*<script>
+        var editor = CKEDITOR.replace('ContentPlaceHolder1_txtICERIK');
+
+        CKFinder.setupCKEditor(editor, '/ckfinder/');
+
+    </script>*@
 
 </table>
