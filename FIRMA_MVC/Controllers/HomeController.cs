@@ -16,18 +16,18 @@ namespace FIRMA_MVC.Controllers
             return View();
         }
 
-        public ActionResult About()
+        public ActionResult kurumsal()
         {
-            ViewBag.Message = "Your application description page.";
+            ViewData["sayfa"] = db.SAYFAs.Where(s => s.BASLIK == "kurumsal").SingleOrDefault();
 
             return View();
         }
 
-        public ActionResult Contact()
+        public ActionResult iletisim()
         {
-            ViewBag.Message = "Your contact page.";
+            ViewData["sayfa"] = db.SAYFAs.Where(s => s.BASLIK == "iletisim").SingleOrDefault();
 
-            return View();
+            return View("kurumsal");
         }
     }
 }

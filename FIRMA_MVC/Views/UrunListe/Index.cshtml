@@ -12,7 +12,7 @@
         @foreach (var item in kategori)
         {
             <li class="nav-item">
-                @Html.ActionLink(item.KATEGORI_ADI, "UrunListesi",
+                @Html.ActionLink(item.KATEGORI_ADI, "Index",
                                  new { kategoriid = item.KATEGORI_REFNO }, new { @class="nav-link"})
             </li>
             
@@ -28,8 +28,8 @@
             @item.URUN_ADI
         </div>
 
-        <div>
-            <img src="~/images/@item.RESIM1" />
+        <div class="text-center">
+            <img src="~/images/@item.RESIM1" class="resim1 img-fluid" />
         </div>
 
         <div>
