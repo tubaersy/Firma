@@ -88,7 +88,7 @@ namespace FIRMA_MVC.Areas.Admin.Controllers
                 db.SaveChanges();
                 if (RESIM != null)
                 {
-                    RESIM.SaveAs(Request.PhysicalApplicationPath + "/images/proje/" + RESIM.FileName);//resim yükleme
+                    RESIM.SaveAs(Request.PhysicalApplicationPath + "/images/proje/" + RESIM.FileName);
                 }
 
                 return RedirectToAction("Index");

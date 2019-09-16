@@ -5,20 +5,26 @@
 
 }
 
-<h2>Index</h2>
+    <div id="arama">
+        <form action="/Admin/Projeler/Search" method="post">
+            <label for="txtAra">@Html.DisplayNameFor(model => model.PROJE_ADI)</label>
+            <input id="txtAra" name="txtAra" type="text" placeholder="Proje Adı Giriniz" />
+            <input type="submit" class="btn btn-default" value="Ara" />
+            <a class="btn btn-default" href="/Admin/Projeler/Create">Yeni</a>
+        </form>
+    </div>
 
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
+
 <table class="table">
     <tr>
+        <td>Sil</td>
         <th>
             @Html.DisplayNameFor(model => model.PROJE_ADI)
         </th>
         <th>
             @Html.DisplayNameFor(model => model.RESIM)
         </th>
-        <th id>
+        <th>
             @Html.DisplayNameFor(model => model.ACIKLAMA)
         </th>
         <th></th>
@@ -27,22 +33,33 @@
     @foreach (var item in Model)
     {
         <tr>
+
             <td>
-                @Html.Display(item.PROJE_ADI)
-                @Html.DisplayFor(modelItem => item.PROJE_ADI)
+                @Html.ActionLink("Sil", "Delete", new { id = item.PROJE_REFNO })
             </td>
+
+
+
+            <td>
+                @Html.ActionLink(item.PROJE_ADI, "Create", new { id = item.PROJE_REFNO })
+
+            </td>
+
             <td>
                 @Html.DisplayFor(modelItem => item.RESIM)
             </td>
             <td>
                 @Html.Raw(item.ACIKLAMA)
             </td>
-            <td>
+
+    
+
+            @*<td>
                 <a href="/Admin/Projeler/Edit/" @item.PROJE_REFNO></a>
                 @Html.ActionLink("Edit", "Edit", new { id = item.PROJE_REFNO }) |
                 @Html.ActionLink("Details", "Details", new { id = item.PROJE_REFNO }) |
                 @Html.ActionLink("Delete", "Delete", new { id = item.PROJE_REFNO })
-            </td>
+            </td>*@
         </tr>
     }
 
