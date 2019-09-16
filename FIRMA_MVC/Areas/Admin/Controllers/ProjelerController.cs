@@ -68,10 +68,14 @@ namespace FIRMA_MVC.Areas.Admin.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create(PROJE proje, HttpPostedFileBase RESIM)
         {
+           
             if (ModelState.IsValid)
             {
+               
+
                 if (RESIM != null)
                 {
+                    
                     proje.RESIM = RESIM.FileName;
                 }
 
@@ -88,6 +92,7 @@ namespace FIRMA_MVC.Areas.Admin.Controllers
                 db.SaveChanges();
                 if (RESIM != null)
                 {
+
                     RESIM.SaveAs(Request.PhysicalApplicationPath + "/images/proje/" + RESIM.FileName);
                 }
 
@@ -121,6 +126,7 @@ namespace FIRMA_MVC.Areas.Admin.Controllers
         {
             if (ModelState.IsValid)
             {
+
                 db.Entry(pROJE).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");

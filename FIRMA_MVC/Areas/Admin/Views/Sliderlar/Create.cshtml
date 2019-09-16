@@ -52,10 +52,11 @@
 
 
         <div class="form-group">
-            <input type="submit" value="Kaydet" class="btn btn-default" />
-            @Html.ActionLink("Vazgeç", "Index", null, new { @class = "btn btn-default" })
+            <div class="col-lg-offset-2 col-md-10">
+                <input type="submit" value="Kaydet" class="btn btn-default" />
+                @Html.ActionLink("Vazgeç", "Index", null, new { @class = "btn btn-default" })
+            </div>
         </div>
-
     </div>
 
     }
