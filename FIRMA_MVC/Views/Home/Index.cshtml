@@ -3,6 +3,10 @@
     ViewBag.Title = "Index";
 
     List<SLIDER> slider = ViewData["slider"] as List<SLIDER>;
+
+    List<URUN> urunler = ViewData["urunler"] as List<URUN>;
+
+    List<PROJE> projeler = ViewData["projeler"] as List<PROJE>;
  }
 
     <div id="slider">
@@ -35,3 +39,35 @@
 
     </div>
 
+    <div id="projeler" class="col-md-6">
+
+        <div id="projebaslik">PROJELER</div>
+
+        @foreach (var item in projeler)
+        {
+            <div class="proje">
+
+                <div class="projeadi">@item.PROJE_ADI</div>
+                <div class="projeresim"> <img src="~/images/proje/@item.RESIM"/></div>
+                <div class="projedetay"><a href="/ProjeListe/Detay/@item.PROJE_REFNO">Detay</a></div>
+
+            </div>
+        }
+
+    </div>
+
+    <div id="urunler" class="col-md-6">
+
+        <div id="urunbaslik">ÜRÜNLER</div>
+
+        @foreach (var item in urunler)
+        {
+            <div class="urun">
+
+                <div class="urunadi">@item.URUN_ADI</div>
+                <div class="urunresim"> <img src="~/images/proje/@item.RESIM1" /></div>
+                <div class="urundetay"><a href="/UrunListe/Detay/@item.URUN_REFNO">Detay</a></div>
+
+            </div>
+        }
+    </div>

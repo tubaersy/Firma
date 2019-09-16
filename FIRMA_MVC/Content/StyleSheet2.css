@@ -15,6 +15,16 @@
     background-color:#d7eeff;
 }
 
+#menu a {
+    color: white;
+}
+
+
+.menuzemin {
+    background-color:#edb10b;
+}
+
+
 #footer {
     background-color: #acacac;
     color: white;
@@ -24,4 +34,123 @@
     height:200px;
     width:400px;
 
+}
+
+#projeler {
+    background-color:white;
+    min-height:200px;
+    border:1px solid #e8e8e8;
+}
+
+#projebaslik {
+    background-color:#7dc9ff;
+    color:white;
+    font-size:20px;
+    font-weight:bold;
+    padding:10px;
+    margin-top:10px;
+}
+
+.proje {
+
+}
+
+.projeadi {
+    margin:0px 10px 0px 10px;
+    height:30px;
+    line-height:30px;
+    color:#159dff;
+    border-bottom:1px solid #d7eeff;
+}
+
+.projeresim {
+    text-align: center;
+    border-bottom: 1px solid #e8e8e8;
+    margin-bottom:10px;
+}
+
+.projeresim:hover {
+    background-color: #d7eeff;
+}
+
+.projedetay {
+    height:30px;
+    width:60px;
+    border-radius:10px;
+    background-color:#ff8a37;
+    text-align:center;
+    vertical-align:central;
+    padding:5px 0px 0px 0px;
+
+}
+.projedetay a {
+    color: white;
+    text-decoration:none;
+}
+
+.projedetay a:horizontal {
+    text-decoration: none;
+}
+
+.projedetay:hover {
+    background-color:#edb10b;
+}
+
+#urunler {
+    background-color: white;
+    min-height: 200px;
+    border: 1px solid #e8e8e8;
+}
+#urunbaslik {
+    background-color: #7dc9ff;
+    color: white;
+    font-size: 20px;
+    font-weight: bold;
+    padding: 10px;
+    margin-top: 10px;
+}
+
+
+.urun {
+}
+
+.urunadi {
+    margin: 0px 10px 0px 10px;
+    height: 30px;
+    line-height: 30px;
+    color: #159dff;
+    border-bottom: 1px solid #d7eeff;
+}
+
+.urunresim {
+    text-align: center;
+    border-bottom: 1px solid #e8e8e8;
+    margin-bottom: 10px;
+}
+
+.urunresim:hover {
+    background-color: #d7eeff;
+}
+
+.urundetay {
+    height: 30px;
+    width: 60px;
+    border-radius: 10px;
+    background-color: #ff8a37;
+    text-align: center;
+    vertical-align: central;
+    padding: 5px 0px 0px 0px;
+}
+
+.urundetay a {
+    color: white;
+    text-decoration: none;
+}
+
+.urundetay a:horizontal {
+        text-decoration: none;
+}
+
+.urundetay:hover {
+    background-color: #edb10b;
 }

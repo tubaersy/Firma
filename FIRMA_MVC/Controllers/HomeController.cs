@@ -13,6 +13,11 @@ namespace FIRMA_MVC.Controllers
         public ActionResult Index()
         {
             ViewData["slider"] = db.SLIDERs.Where(s => s.DURUMU == true).ToList();
+
+            ViewData["projeler"] = db.PROJEs.OrderBy(p => p.PROJE_REFNO).Take(2).ToList();
+
+            ViewData["urunler"] = db.URUNs.OrderBy(u => u.URUN_REFNO).Take(2).ToList();
+
             return View();
         }
 

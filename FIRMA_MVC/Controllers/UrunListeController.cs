@@ -25,5 +25,17 @@ namespace FIRMA_MVC.Controllers
             ViewData["urun"] = db.URUNs.Where(u => u.KATEGORI_REFNO == kategoriid).ToList();
             return View();
         }
+
+        public ActionResult Detay(int id)
+        {
+            URUN urun = db.URUNs.Find(id);
+
+            if (urun == null)
+            {
+                return RedirectToAction("Goster", "Mesaj", new { m = "Ürün bulunamadı" });
+            }
+
+            return View(urun);
+        }
     }
 }
