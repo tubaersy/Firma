@@ -15,9 +15,20 @@ namespace FIRMA_MVC.Areas.Admin.Controllers
         private FIRMAMODEL db = new FIRMAMODEL();
 
         // GET: Admin/Projeler
-        public ActionResult Index()
+        public ActionResult Index(string arama)
         {
-            return View(db.PROJEs.ToList());
+            List<PROJE> liste = db.PROJEs.ToList();
+
+            if (arama == null)
+            {
+                arama = "";
+                liste = db.PROJEs.ToList();
+            }
+            else
+            {
+                liste = db.PROJEs.Where(s => s.PROJE_ADI.Contains(arama)).ToList();
+            }
+            return View(liste);
         }
 
         // GET: Admin/Projeler/Details/5
@@ -36,9 +47,18 @@ namespace FIRMA_MVC.Areas.Admin.Controllers
         }
 
         // GET: Admin/Projeler/Create
-        public ActionResult Create()
+        public ActionResult Create(int? id)
         {
-            return View();
+            PROJE p = new PROJE();
+            if (id != null)
+            {
+                p = db.PROJEs.Find(id);
+                if (p == null)
+                {
+                    p = new PROJE();
+                }
+            }
+            return View(p);
         }
 
         // POST: Admin/Projeler/Create
@@ -46,17 +66,35 @@ namespace FIRMA_MVC.Areas.Admin.Controllers
         // daha fazla bilgi için https://go.microsoft.com/fwlink/?LinkId=317598 sayfasına bakın.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "PROJE_REFNO,PROJE_ADI,RESIM,ACIKLAMA")] PROJE pROJE)
+        public ActionResult Create(PROJE proje, HttpPostedFileBase RESIM)
         {
             if (ModelState.IsValid)
             {
-                pROJE.ACIKLAMA = HttpUtility.HtmlDecode(pROJE.ACIKLAMA);
-                db.PROJEs.Add(pROJE);
+                if (RESIM != null)
+                {
+                    proje.RESIM = RESIM.FileName;
+                }
+
+                if (proje.PROJE_REFNO == 0)
+                {
+                    proje.ACIKLAMA = HttpUtility.HtmlDecode(proje.ACIKLAMA);
+                    db.PROJEs.Add(proje);
+                }
+                else
+                {
+                    proje.ACIKLAMA = HttpUtility.HtmlDecode(proje.ACIKLAMA);
+                    db.Entry(proje).State = System.Data.Entity.EntityState.Modified;
+                }
                 db.SaveChanges();
+                if (RESIM != null)
+                {
+                    RESIM.SaveAs(Request.PhysicalApplicationPath + "/images/proje/" + RESIM.FileName);//resim yükleme
+                }
+
                 return RedirectToAction("Index");
             }
 
-            return View(pROJE);
+            return View(proje);
         }
 
         // GET: Admin/Projeler/Edit/5
@@ -93,16 +131,16 @@ namespace FIRMA_MVC.Areas.Admin.Controllers
         // GET: Admin/Projeler/Delete/5
         public ActionResult Delete(int? id)
         {
-            if (id == null)
+            if (id != null)//id istek içerisinde varsa
             {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                PROJE p = db.PROJEs.Find(id);
+                if (p != null)//id kullanıcılarda varsa
+                {
+                    db.PROJEs.Remove(p);
+                    db.SaveChanges();
+                }
             }
-            PROJE pROJE = db.PROJEs.Find(id);
-            if (pROJE == null)
-            {
-                return HttpNotFound();
-            }
-            return View(pROJE);
+            return RedirectToAction("Index");
         }
 
         // POST: Admin/Projeler/Delete/5

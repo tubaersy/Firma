@@ -18,7 +18,7 @@
         <th>
             @Html.DisplayNameFor(model => model.RESIM)
         </th>
-        <th>
+        <th id>
             @Html.DisplayNameFor(model => model.ACIKLAMA)
         </th>
         <th></th>
@@ -35,7 +35,7 @@
                 @Html.DisplayFor(modelItem => item.RESIM)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.ACIKLAMA)
+                @Html.Raw(item.ACIKLAMA)
             </td>
             <td>
                 <a href="/Admin/Projeler/Edit/" @item.PROJE_REFNO></a>
@@ -45,6 +45,7 @@
             </td>
         </tr>
     }
-   
+
+    
 
 </table>

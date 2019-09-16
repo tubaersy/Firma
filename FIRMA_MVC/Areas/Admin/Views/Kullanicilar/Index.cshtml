@@ -4,9 +4,14 @@
     ViewBag.Title = "Index";
 }
 
-<div id="arama">
-
-</div>
+    <div id="arama">
+        <form action="/Admin/Kullanicilar/Search" method="post">
+            <label for="txtAra">@Html.DisplayNameFor(model => model.KULLANICI_ADI)</label>
+            <input id="txtAra" name="txtAra" type="text" placeholder="Kullanıcı Adı Giriniz" @*value="@veri*@ "  />
+            <input type="submit" class="btn btn-default" value="Ara" />
+            <a class="btn btn-default" href="/Admin/Kullanicilar/Create">Yeni</a>
+        </form>
+    </div>
 
 
 <div id="liste">

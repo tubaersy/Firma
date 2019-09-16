@@ -132,6 +132,8 @@
     <Compile Include="Areas\Admin\Controllers\KullanicilarController.cs" />
     <Compile Include="Areas\Admin\Controllers\MarkalarController.cs" />
     <Compile Include="Areas\Admin\Controllers\ProjelerController.cs" />
+    <Compile Include="Areas\Admin\Controllers\SayfalarController.cs" />
+    <Compile Include="Areas\Admin\Controllers\SliderlarController.cs" />
     <Compile Include="Areas\Admin\Controllers\UrunlerController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Areas\Admin\Controllers\KategorilerController.cs" />
@@ -798,6 +800,10 @@
     <Content Include="ckfinder\skins\kama\images\toolbar\Thumbs.db" />
     <Content Include="ckfinder\skins\v1\images\toolbar\Thumbs.db" />
     <Content Include="ckfinder\userfiles\.htaccess" />
+    <Content Include="Areas\Admin\Views\Sayfalar\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\Sayfalar\Create.cshtml" />
+    <Content Include="Areas\Admin\Views\Sliderlar\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\Sliderlar\Create.cshtml" />
     <None Include="Scripts\jquery-3.3.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.3.1.js" />
     <Content Include="Scripts\jquery-3.3.1.min.js" />

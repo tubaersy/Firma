@@ -1,0 +1,52 @@
+﻿@using FIRMA_MVC.Models;
+@model IEnumerable<SLIDER>
+@{
+    ViewBag.Title = "Index";
+}
+
+    <div id="arama">
+        <form action="/Admin/Sliderlar/Search" method="post">
+            <label for="txtAra">@Html.DisplayNameFor(model => model.BASLIK)</label>
+            <input id="txtAra" name="txtAra" type="text" placeholder="Başlık Adı Giriniz" @*value="@veri*@ "   />
+            <input type="submit" class="btn btn-default" value="Ara" />
+            <a class="btn btn-default" href="/Admin/Sliderlar/Create">Yeni</a>
+        </form>
+    </div>
+
+    <div id="liste">
+        <table>
+
+            <tr>
+                <td>Sil</td>
+                <td>@Html.DisplayNameFor(model => model.SLIDER_REFNO)</td>
+                <td>@Html.DisplayNameFor(model => model.BASLIK)</td>
+                <td>@Html.DisplayNameFor(model => model.LINK)</td>
+                <td>@Html.DisplayNameFor(model => model.RESIM)</td>
+                <td>@Html.DisplayNameFor(model => model.DURUMU)</td>
+            </tr>
+
+            @foreach (var item in Model)
+            {
+                <tr>
+
+                    <td>
+                        @Html.ActionLink("Sil", "Delete", new { id = item.SLIDER_REFNO })
+                    </td>
+                    <td>
+                        @Html.DisplayFor(model => item.SLIDER_REFNO)
+                    </td>
+                    <td>
+                        @Html.ActionLink(item.BASLIK, "Create", new { id = item.SLIDER_REFNO })
+
+                    </td>
+                    <td>@Html.DisplayFor(model => item.LINK)</td>
+
+                    <td>@Html.DisplayFor(model => item.RESIM)</td>
+
+                    <td>@Html.DisplayFor(model => item.DURUMU)</td>
+
+                </tr>
+            }
+
+        </table>
+    </div>
