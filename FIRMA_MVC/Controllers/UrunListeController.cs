@@ -32,7 +32,8 @@ namespace FIRMA_MVC.Controllers
 
             if (urun == null)
             {
-                return RedirectToAction("Goster", "Mesaj", new { m = "Ürün bulunamadı" });
+                TempData["m"] = "ürün bulunamadı";
+                return RedirectToAction("Goster", "Mesaj");
             }
 
             return View(urun);

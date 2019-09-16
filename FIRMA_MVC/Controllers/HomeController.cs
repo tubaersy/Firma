@@ -18,6 +18,10 @@ namespace FIRMA_MVC.Controllers
 
             ViewData["urunler"] = db.URUNs.OrderBy(u => u.URUN_REFNO).Take(2).ToList();
 
+            // application üzerindeki ziyaretçi sayısı
+            ViewData["sayi"] = Convert.ToInt32(HttpContext.Application["sayi"]);
+            ViewData["saat"] = HttpContext.Session["saat"].ToString();
+
             return View();
         }
 

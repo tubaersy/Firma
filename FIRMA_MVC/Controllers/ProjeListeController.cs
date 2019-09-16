@@ -22,7 +22,8 @@ namespace FIRMA_MVC.Controllers
 
             if (proje == null)
             {
-                return RedirectToAction("Goster", "Mesaj", new { m = "Proje bulunamadı" });
+                TempData["m"] = "Proje bulunamadı";     
+                return RedirectToAction("Goster", "Mesaj");
             }
 
             return View(proje);

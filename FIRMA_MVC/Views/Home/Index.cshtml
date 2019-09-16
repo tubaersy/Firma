@@ -7,7 +7,12 @@
     List<URUN> urunler = ViewData["urunler"] as List<URUN>;
 
     List<PROJE> projeler = ViewData["projeler"] as List<PROJE>;
+
+    int sayi = Convert.ToInt32(ViewData["sayi"]);
+
  }
+
+<div> Ziyaretçi: @sayi</div> <div>Saat: @ViewData["saat"].ToString()</div>
 
     <div id="slider">
 
