@@ -12,7 +12,10 @@
     <script src="~/Scripts/jquery.validate.unobtrusive.js"></script>
 </head>
 <body>
-    <div id="banner">YÖNETİM PANELİ</div>
+    <div id="banner">
+        YÖNETİM PANELİ
+        <a href="/Admin/Giris/Cikis">@User.Identity.Name Çıkış</a>
+    </div>
 
     <div id="menu">
         <a href="/Admin/Urunler/Index">Ürünler</a>

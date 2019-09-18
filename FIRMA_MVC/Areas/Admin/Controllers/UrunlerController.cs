@@ -8,6 +8,7 @@ using FIRMA_MVC.Models;
 
 namespace FIRMA_MVC.Areas.Admin.Controllers
 {
+    [Authorize]
     public class UrunlerController : Controller
     {
         FIRMAMODEL db = new FIRMAMODEL();

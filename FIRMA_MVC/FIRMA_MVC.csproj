@@ -129,6 +129,7 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Areas\Admin\AdminAreaRegistration.cs" />
+    <Compile Include="Areas\Admin\Controllers\GirisController.cs" />
     <Compile Include="Areas\Admin\Controllers\KullanicilarController.cs" />
     <Compile Include="Areas\Admin\Controllers\MarkalarController.cs" />
     <Compile Include="Areas\Admin\Controllers\MesajController.cs" />
@@ -812,6 +813,7 @@
     <Content Include="Areas\Admin\Views\Sliderlar\Index.cshtml" />
     <Content Include="Areas\Admin\Views\Sliderlar\Create.cshtml" />
     <Content Include="Areas\Admin\Views\Mesaj\Goster.cshtml" />
+    <Content Include="Areas\Admin\Views\Giris\Index.cshtml" />
     <None Include="Scripts\jquery-3.3.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.3.1.js" />
     <Content Include="Scripts\jquery-3.3.1.min.js" />
@@ -847,6 +849,7 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Areas\Admin\Models\" />
+    <Folder Include="Views\Giris\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />

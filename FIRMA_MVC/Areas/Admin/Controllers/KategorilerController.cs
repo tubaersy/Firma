@@ -7,6 +7,7 @@ using FIRMA_MVC.Models;
 
 namespace FIRMA_MVC.Areas.Admin.Controllers
 {
+    [Authorize]
     public class KategorilerController : Controller
     {
         FIRMAMODEL db = new FIRMAMODEL();

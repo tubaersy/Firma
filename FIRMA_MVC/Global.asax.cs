@@ -9,7 +9,7 @@ using System.Web.Routing;
 namespace FIRMA_MVC
 {
     public class MvcApplication : System.Web.HttpApplication
-    {
+    {       
         protected void Application_Start()
         {
             AreaRegistration.RegisterAllAreas();
