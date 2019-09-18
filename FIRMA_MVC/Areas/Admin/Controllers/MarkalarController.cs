@@ -12,25 +12,48 @@ namespace FIRMA_MVC.Areas.Admin.Controllers
     {
         FIRMAMODEL db = new FIRMAMODEL();
         // GET: Admin/Markalar
-        public ActionResult Index(string arama)
+        int sayfadakisatirsayisi = 5;
+        public ActionResult Index(string arama, int aktifsayfa = 0)
         {
             List<MARKA> liste = new List<MARKA>();
-            
 
             if (arama == null)
             {
                 arama = "";
-                liste = db.MARKAs.ToList();
+                Sayfalama(db.MARKAs.Count());
+                liste = db.MARKAs.OrderBy(u => u.MARKA_REFNO).Skip(aktifsayfa * sayfadakisatirsayisi)
+                                .Take(sayfadakisatirsayisi).ToList();
+
             }
             else
             {
-                liste = db.MARKAs.Where(m => m.MARKA_ADI.Contains(arama)).ToList();
+                Sayfalama(db.MARKAs.Where(s => s.MARKA_ADI.Contains(arama)).Count());
+                liste = db.MARKAs.Where(s => s.MARKA_ADI.Contains(arama))
+                                .OrderBy(u => u.MARKA_REFNO)
+                                .Skip(aktifsayfa * sayfadakisatirsayisi).
+                                 Take(sayfadakisatirsayisi).ToList();
             }
 
             ViewData["veri"] = arama;
 
+            ViewData["arama"] = arama;
+            ViewData["aktifsayfa"] = aktifsayfa;
+
             return View(liste);
 
+        }
+
+        public void Sayfalama(int satirsayisi)
+        {
+            int toplamsatir = satirsayisi;
+            int toplamsayfa = toplamsatir / sayfadakisatirsayisi;
+
+            if (toplamsatir % sayfadakisatirsayisi != 0)
+            {
+                toplamsayfa++;
+            }
+            ViewData["toplamsatir"] = toplamsatir;
+            ViewData["toplamsayfa"] = toplamsayfa;
         }
 
         public ActionResult Delete(int id)

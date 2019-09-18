@@ -12,18 +12,49 @@ namespace FIRMA_MVC.Areas.Admin.Controllers
     {
         FIRMAMODEL db = new FIRMAMODEL();
         // GET: Admin/Sayfalar
-        public ActionResult Index(string arama)
+
+        int sayfadakisatirsayisi = 5;
+        public ActionResult Index(string arama, int aktifsayfa = 0)
         {
-            List<SAYFA> liste = db.SAYFAs.ToList();
+            List<SAYFA> liste = new List<SAYFA>();
+
             if (arama == null)
             {
-                liste = db.SAYFAs.ToList();
+                arama = "";
+                Sayfalama(db.SAYFAs.Count());
+                liste = db.SAYFAs.OrderBy(u => u.SAYFA_REFNO).Skip(aktifsayfa * sayfadakisatirsayisi)
+                                .Take(sayfadakisatirsayisi).ToList();
+
             }
             else
             {
-                liste = db.SAYFAs.Where(k => k.BASLIK.Contains(arama)).ToList();
+                Sayfalama(db.SAYFAs.Where(s => s.BASLIK.Contains(arama)).Count());
+                liste = db.SAYFAs.Where(s => s.BASLIK.Contains(arama))
+                                .OrderBy(u => u.SAYFA_REFNO)
+                                .Skip(aktifsayfa * sayfadakisatirsayisi).
+                                 Take(sayfadakisatirsayisi).ToList();
             }
+
+            ViewData["veri"] = arama;
+
+            ViewData["arama"] = arama;
+            ViewData["aktifsayfa"] = aktifsayfa;
+
             return View(liste);
+
+        }
+
+        public void Sayfalama(int satirsayisi)
+        {
+            int toplamsatir = satirsayisi;
+            int toplamsayfa = toplamsatir / sayfadakisatirsayisi;
+
+            if (toplamsatir % sayfadakisatirsayisi != 0)
+            {
+                toplamsayfa++;
+            }
+            ViewData["toplamsatir"] = toplamsatir;
+            ViewData["toplamsayfa"] = toplamsayfa;
         }
 
         public ActionResult Delete(int? id)
